@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nginx: 
+    image: nginx
+  node-app:
+    container_name: app-prod
+    build: 
+      context: .
+      args:
+        NODE_ENV: production
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    volumes:
+      - /app/node_modules
+      - .:/app:ro
+    command: npm run build
+    
+      
